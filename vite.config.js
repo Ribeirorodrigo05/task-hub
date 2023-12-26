@@ -2,7 +2,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/task-hub/',
@@ -14,5 +13,8 @@ export default defineConfig({
   },
   build: {
     outDir: 'docs'
+  },
+  server: {
+    port: 3000
   }
 })
