@@ -1,13 +1,15 @@
 <script setup>
-import { RouterView } from 'vue-router'
-import { routerPush } from './router/routerFunctions'
+import { RouterView, useRouter } from 'vue-router'
 import { onBeforeMount } from 'vue'
 
 onBeforeMount(() => {
   const token = localStorage.getItem('token')
-  console.log(token)
+
   if (!token) {
-    routerPush('/login')
+    const router = useRouter()
+    router.push('/login').catch((err) => {
+      console.error(`router push error: ${err}`)
+    })
   }
 })
 </script>
