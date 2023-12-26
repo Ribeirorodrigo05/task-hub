@@ -1,7 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-screen">
     <div class="w-1/3">
-      <img src="https://terabox.com/s/1Vy4CEca939f-H0A_mFNaWQ" />
       <h1 class="text-3xl font-bold mb-6">Login</h1>
       <form @submit.prevent="login">
         <div class="mb-4">
