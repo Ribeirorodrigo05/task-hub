@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 * {
   box-sizing: border-box;
   color: #bdc0c3;
@@ -7,4 +8,10 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   background-color: #222831;
+}
+
+.centralize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
