@@ -1,21 +1,11 @@
 <script setup>
-import { RouterView, useRouter } from 'vue-router'
-import { onBeforeMount } from 'vue'
-
-onBeforeMount(() => {
-  const token = localStorage.getItem('token')
-
-  if (!token) {
-    const router = useRouter()
-    router.push('/login').catch((err) => {
-      console.error(`router push error: ${err}`)
-    })
-  }
-})
+import MenuHeader from '@/components/MenuHeader.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>
+  <MenuHeader />
   <RouterView />
 </template>
 
-<style scoped></style>
+<style></style>

@@ -1,8 +1,22 @@
-<script setup></script>
+<script setup>
+import { HERO_MOVIES } from '@/utils/hero_movies';
+import TitleLabel from '@/components/TitleLabel.vue';
+
+const text = {
+  message: '#Trending',
+  padding: 10,
+  margin: 10
+};
+</script>
 
 <template>
   <div>
-    <h1>Home Page</h1>
+    <section>
+      <TitleLabel :text="text" />
+    </section>
+    <section style="display: flex">
+      <BaseMovieCard v-for="(movie, index) in HERO_MOVIES" :key="index" :name="movie" />
+    </section>
   </div>
 </template>
 
