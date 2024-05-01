@@ -22,6 +22,7 @@ export default defineConfig({
     outDir: 'docs'
   },
   server: {
-    port: 3000
+    host: true,
+    port: 8000
   }
 });
