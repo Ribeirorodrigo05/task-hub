@@ -46,6 +46,9 @@ const items = ref(MENU_ITEMS);
 </template>
 
 <style>
+#headerMenu {
+  margin: 0 auto;
+}
 .item-menu {
   padding: 0.5rem;
 }

@@ -38,28 +38,20 @@ export const HERO_MOVIES = [
   'Ant-Man and The Wasp',
   'Aquaman and the Lost Kingdom',
   'Avengers: Endgame',
-  'Logan: The Wolverine',
-  'The Incredibles 2',
   'Hellboy II: The Golden Army',
-  'The Dark Knight Rises',
   'Iron Man 2',
-  'Thor: The Dark World',
   'The Amazing Spider-Man 2',
-  'Wonder Woman 1984',
   'Spider-Man: Far From Home',
-  "Black Widow: Widow's Sting",
   'Guardians of the Galaxy Vol. 3',
-  'Deadpool 3',
-  'Doctor Strange in the Multiverse of Madness',
-  'Superman and Lois',
+
   'Thor: Love and Thunder',
   'Captain America: The First Avenger',
-  'Black Panther: Wakanda Forever',
   'X-Men Origins: Wolverine',
-  'Ant-Man and The Wasp: Quantumania',
-  'Aquaman and the Lost Kingdom',
-  'Avengers: Endgame',
-  'Logan: The Wolverine',
-  'The Incredibles 2',
-  'Hellboy II: The Golden Army'
-];
+  'Ant-Man and The Wasp: Quantumania'
+].filter((value, index, self) => {
+  return self.indexOf(value) === index;
+});
+
+export const heroMovies = HERO_MOVIES.map((movie) => {
+  return { name: movie };
+});

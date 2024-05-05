@@ -1,5 +1,5 @@
 <script setup>
-import { HERO_MOVIES } from '@/utils/hero_movies';
+import { heroMovies } from '@/utils/hero_movies';
 import TitleLabel from '@/components/TitleLabel.vue';
 
 const text = {
@@ -14,8 +14,19 @@ const text = {
     <section>
       <TitleLabel :text="text" />
     </section>
-    <section style="display: flex">
-      <BaseMovieCard v-for="(movie, index) in HERO_MOVIES" :key="index" :name="movie" />
+    <section>
+      <Carousel
+        :value="heroMovies"
+        :numVisible="5"
+        :numScroll="1"
+        circular
+        :autoplayInterval="5000"
+        :showIndicators="false"
+      >
+        <template #item="movie">
+          <BaseMovieCard :name="movie.data.name" />
+        </template>
+      </Carousel>
     </section>
   </div>
 </template>

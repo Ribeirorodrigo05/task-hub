@@ -10,11 +10,15 @@ const props = defineProps({
 });
 
 const movie = ref({});
+const rating = ref(0);
 
 const getMovie = async () => {
   const { data } = await axios.get(props.name);
   movie.value = data;
   window.localStorage.setItem(props.name, JSON.stringify(data));
+};
+const getGenre = (genre) => {
+  console.log(genre.split(','));
 };
 
 onMounted(async () => {
@@ -26,14 +30,12 @@ onMounted(async () => {
 <template>
   <div>
     <Card
-      style="width: 14rem; overflow: hidden; padding: 0px; margin: 8px; min-height: 320px"
+      style="width: 14rem; overflow: hidden; padding: 0px; margin: 8px; height: 320px"
       class="card-style"
+      :style="`background-image: url(${movie.Poster});`"
     >
       <template #header>
-        <div
-          class="centralize card-background"
-          :style="`background-image: url(${movie.Poster});`"
-        ></div>
+        <div class="centralize card-background"></div>
       </template>
       <template #title>
         <div class="card-text card-title">
@@ -44,17 +46,21 @@ onMounted(async () => {
         <div class="card-info">
           <span class="card-info-subtitle">{{ `Year: ${movie.Year}` }}</span>
           <span class="card-info-subtitle">{{ `Duration: ${movie.Runtime}` }}</span>
+          <span class="card-info-subtitle">{{ `Box office: ${movie.BoxOffice}` }}</span>
         </div>
       </template>
       <template #content>
         <div class="card-content">
-          <p class="m-0 card-text">
-            {{ movie.Plot }}
-          </p>
+          <!-- <i class="pi pi-user" style="font-size: 1rem"></i
+          >-->
+          <span class="card-text">Sua avaliação</span>
+          <Rating v-model="rating" :cancel="false" />
         </div>
       </template>
       <template #footer>
-        <div class="card-footer"></div>
+        <div class="card-footer" v-if="movie.genre">
+          <Chip v-for="(genre, index) in getGenre(movie.Genre)" :key="index" :label="genre" />
+        </div>
       </template>
     </Card>
   </div>
@@ -62,19 +68,18 @@ onMounted(async () => {
 
 <style lang="scss">
 .card-style {
-  background-color: #141312;
   color: #fff;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(13.5px);
-  background: rgba(0, 0, 0, 0.808);
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
   border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  background-size: 100%;
+  cursor: pointer;
 
   .p-card-body {
-    padding: 8px;
+    display: none;
   }
 
   .card-text {
@@ -86,21 +91,6 @@ onMounted(async () => {
     width: 100%;
   }
 
-  .card-text:hover {
-    text-overflow: clip;
-    width: 100%;
-    animation: scroll 5s linear normal;
-
-    @keyframes scroll {
-      0% {
-        text-indent: 0%;
-      }
-      100% {
-        text-indent: -50%;
-      }
-    }
-  }
-
   .card-title {
     font-size: 1.25rem;
     font-weight: 500;
@@ -108,8 +98,8 @@ onMounted(async () => {
   }
 
   .card-background {
-    height: 256px;
-    background-size: 100% 256px;
+    height: 160px;
+    background-size: 100%;
     background-repeat: no-repeat;
     border-radius: 8px 8px 0 0;
     padding: 0;
@@ -120,6 +110,35 @@ onMounted(async () => {
     display: flex;
     flex-direction: column;
     font-size: 12px;
+  }
+  .card-content {
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+  }
+}
+
+.card-style:hover {
+  .p-card-body {
+    display: block;
+    height: 100%;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.774);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    animation: slide-up 50ms ease-out;
+  }
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 }
 </style>

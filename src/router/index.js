@@ -1,5 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import HomePage from '../views/home/HomePage.vue';
+const HomePage = () => import('@/views/home/HomePage.vue');
+
+import { MenuCategoriesRoutes } from './MenuCategories';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -9,7 +11,8 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomePage
-    }
+    },
+    ...MenuCategoriesRoutes
   ]
 });
 

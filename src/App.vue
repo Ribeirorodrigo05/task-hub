@@ -5,7 +5,14 @@ import { RouterView } from 'vue-router';
 
 <template>
   <MenuHeader />
-  <RouterView />
+  <div id="main">
+    <RouterView />
+  </div>
 </template>
 
-<style></style>
+<style>
+#main {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+</style>
